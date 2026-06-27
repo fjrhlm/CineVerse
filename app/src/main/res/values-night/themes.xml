@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CineVerse" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Warna Utama / Aksen (Amber Neon) -->
+        <item name="colorPrimary">@color/aksen_amber</item>
+        <!-- Warna teks/ikon yang berada di atas warna primer (misal: teks di dalam tombol Amber) -->
+        <item name="colorOnPrimary">@color/bg_utama</item>
+
+        <!-- Warna Background Utama (Obsidian Gelap) -->
+        <item name="android:windowBackground">@color/bg_utama</item>
+        <item name="android:colorBackground">@color/bg_utama</item>
+        <!-- Warna teks di atas background utama -->
+        <item name="colorOnBackground">@color/teks_utama</item>
+
+        <!-- Warna Surface / Permukaan (Untuk Kartu, Bottom Sheet, dsb) -->
+        <item name="colorSurface">@color/bg_sekunder</item>
+        <item name="colorOnSurface">@color/teks_utama</item>
+
+        <!-- Kustomisasi Status Bar (Bagian paling atas layar: jam, baterai, sinyal) -->
+        <item name="android:statusBarColor">@color/bg_utama</item>
+        <!-- false = agar ikon jam/baterai berwarna putih, cocok untuk tema gelap -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Tipografi Global -->
+        <item name="android:fontFamily">@font/poppins</item>
+
+    </style>
+
+    <style name="Theme.CineVerse" parent="Base.Theme.CineVerse" />
+</resources>
