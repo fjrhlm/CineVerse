@@ -11,13 +11,6 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         private const val DATABASE_NAME = "cineverse.db"
         private const val DATABASE_VERSION = 2 // Upgraded from 1
 
-        // Table Users
-        const val TABLE_USERS = "users"
-        const val KEY_USER_ID = "id"
-        const val KEY_USER_NAME = "username"
-        const val KEY_USER_EMAIL = "email"
-        const val KEY_USER_PASSWORD = "password"
-
         // Table Watchlist
         const val TABLE_WATCHLIST = "watchlist"
         const val KEY_WATCH_ID = "id"
@@ -30,12 +23,6 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createUsersTable = ("CREATE TABLE " + TABLE_USERS + "("
-                + KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_USER_NAME + " TEXT,"
-                + KEY_USER_EMAIL + " TEXT UNIQUE,"
-                + KEY_USER_PASSWORD + " TEXT" + ")")
-        
         val createWatchlistTable = ("CREATE TABLE " + TABLE_WATCHLIST + "("
                 + KEY_WATCH_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_WATCH_MOVIE_ID + " INTEGER UNIQUE,"
@@ -45,7 +32,6 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
                 + KEY_WATCH_DATE + " TEXT,"
                 + KEY_WATCH_MEDIA_TYPE + " TEXT DEFAULT 'movie'" + ")")
 
-        db.execSQL(createUsersTable)
         db.execSQL(createWatchlistTable)
     }
 
@@ -55,48 +41,10 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
                 db.execSQL("ALTER TABLE $TABLE_WATCHLIST ADD COLUMN $KEY_WATCH_MEDIA_TYPE TEXT DEFAULT 'movie'")
             } catch (e: Exception) {
                 // In case column already exists or migration fails, recreate
-                db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
                 db.execSQL("DROP TABLE IF EXISTS $TABLE_WATCHLIST")
                 onCreate(db)
             }
         }
-    }
-
-    // --- USER AUTHENTICATION QUERIES ---
-
-    fun registerUser(username: String, email: String, password: String): Boolean {
-        val db = this.writableDatabase
-        val values = ContentValues().apply {
-            put(KEY_USER_NAME, username)
-            put(KEY_USER_EMAIL, email)
-            put(KEY_USER_PASSWORD, password)
-        }
-        val result = db.insert(TABLE_USERS, null, values)
-        db.close()
-        return result != -1L
-    }
-
-    fun checkUserCredentials(email: String, password: String): Boolean {
-        val db = this.readableDatabase
-        val query = "SELECT * FROM $TABLE_USERS WHERE $KEY_USER_EMAIL = ? AND $KEY_USER_PASSWORD = ?"
-        val cursor = db.rawQuery(query, arrayOf(email, password))
-        val exists = cursor.count > 0
-        cursor.close()
-        db.close()
-        return exists
-    }
-
-    fun getUsernameByEmail(email: String): String {
-        val db = this.readableDatabase
-        val query = "SELECT $KEY_USER_NAME FROM $TABLE_USERS WHERE $KEY_USER_EMAIL = ?"
-        val cursor = db.rawQuery(query, arrayOf(email))
-        var username = "User"
-        if (cursor.moveToFirst()) {
-            username = cursor.getString(0)
-        }
-        cursor.close()
-        db.close()
-        return username
     }
 
     // --- WATCHLIST QUERIES ---
