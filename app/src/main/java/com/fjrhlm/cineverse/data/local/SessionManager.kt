@@ -17,12 +17,16 @@ class SessionManager(context: Context) {
         private const val KEY_DARK_MODE = "isDarkMode"
         private const val KEY_LANGUAGE = "language"
         private const val KEY_CUSTOM_AVATAR_URI = "customAvatarUri"
+        private const val KEY_AUTH_TOKEN = "authToken" // Baru untuk Token API Web Admin
     }
 
-    fun createLoginSession(username: String, email: String) {
+    fun createLoginSession(username: String, email: String, token: String = "") {
         editor.putBoolean(KEY_IS_LOGGED_IN, true)
         editor.putString(KEY_USERNAME, username)
         editor.putString(KEY_EMAIL, email)
+        if (token.isNotEmpty()) {
+            editor.putString(KEY_AUTH_TOKEN, token)
+        }
         editor.putInt(KEY_AVATAR_INDEX, 1) // Default avatar
         editor.putBoolean(KEY_DARK_MODE, true) // Default dark mode enabled
         editor.putString(KEY_LANGUAGE, "en") // Default English
@@ -40,6 +44,10 @@ class SessionManager(context: Context) {
 
     fun getEmail(): String? {
         return pref.getString(KEY_EMAIL, null)
+    }
+    
+    fun getToken(): String? {
+        return pref.getString(KEY_AUTH_TOKEN, null)
     }
 
     fun getAvatarIndex(): Int {
@@ -85,7 +93,14 @@ class SessionManager(context: Context) {
     }
 
     fun logoutUser() {
+        val currentDarkMode = isDarkMode()
+        val currentLang = getLanguage()
+        
         editor.clear()
         editor.commit()
+        
+        // Restore settings so they aren't lost on logout
+        setDarkMode(currentDarkMode)
+        setLanguage(currentLang)
     }
 }
