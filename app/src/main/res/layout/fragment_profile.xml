@@ -58,69 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
-        <!-- Premium Member Banner -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_premium_banner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="3dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/aksen_amber"
-            app:cardBackgroundColor="@color/bg_surface"
-            app:layout_constraintTop_toBottomOf="@id/tv_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_premium_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cineverse Premium"
-                        android:textColor="@color/aksen_amber"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_premium_desc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Akses ulasan &amp; statistik tak terbatas."
-                        android:textColor="@color/teks_sekunder"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rating_badge_bg"
-                    android:text="PRO"
-                    android:textColor="@color/bg_utama"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="4dp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
         <!-- Settings List -->
         <LinearLayout
             android:id="@+id/settings_list_layout"
@@ -128,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/card_premium_banner">
+            app:layout_constraintTop_toBottomOf="@id/tv_email">
 
             <!-- Edit Profile -->
             <RelativeLayout

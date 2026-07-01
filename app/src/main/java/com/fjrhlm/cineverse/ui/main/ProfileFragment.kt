@@ -39,8 +39,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var tvLanguageLabel: TextView
     private lateinit var tvLanguageValue: TextView
     private lateinit var tvSupportLabel: TextView
-    private lateinit var tvPremiumTitle: TextView
-    private lateinit var tvPremiumDesc: TextView
     private lateinit var ivProfileAvatar: ImageView
 
     private lateinit var sessionManager: SessionManager
@@ -75,8 +73,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         tvLanguageLabel = view.findViewById(R.id.tv_language_label)
         tvLanguageValue = view.findViewById(R.id.tv_language_value)
         tvSupportLabel = view.findViewById(R.id.tv_support_label)
-        tvPremiumTitle = view.findViewById(R.id.tv_premium_title)
-        tvPremiumDesc = view.findViewById(R.id.tv_premium_desc)
         ivProfileAvatar = view.findViewById(R.id.iv_profile_avatar)
 
         // Bind Session Info
@@ -165,8 +161,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tvNotificationsLabel.text = "Notifikasi"
             tvLanguageLabel.text = "Bahasa"
             tvSupportLabel.text = "Hubungi Dukungan"
-            tvPremiumTitle.text = "Cineverse Premium"
-            tvPremiumDesc.text = "Akses ulasan & statistik tak terbatas."
             btnLogout.text = "Keluar"
         } else {
             tvLanguageValue.text = "English"
@@ -175,8 +169,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             tvNotificationsLabel.text = "Notifications"
             tvLanguageLabel.text = "Language"
             tvSupportLabel.text = "Contact Support"
-            tvPremiumTitle.text = "Cineverse Premium"
-            tvPremiumDesc.text = "Access unlimited reviews & stats."
             btnLogout.text = "Logout"
         }
     }
