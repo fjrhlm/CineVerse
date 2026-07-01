@@ -9,15 +9,17 @@ data class MovieResponse(
 
 data class Movie(
     @SerializedName("id") val id: Int,
-    @SerializedName("title") val title: String?, // Nullable because TV Shows use "name"
-    @SerializedName("name") val name: String?,   // Used for TV Shows/Series
-    @SerializedName("overview") val overview: String?,
-    @SerializedName("poster_path") val posterPath: String?,
-    @SerializedName("backdrop_path") val backdropPath: String?,
+    @SerializedName("title") val title: String? = null,
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("overview") val overview: String? = null,
+    @SerializedName("poster_path") val posterPath: String? = null,
+    @SerializedName("backdrop_path") val backdropPath: String? = null,
     @SerializedName("vote_average") val voteAverage: Double,
-    @SerializedName("release_date") val releaseDate: String?, // Nullable because TV Shows use first_air_date
-    @SerializedName("first_air_date") val firstAirDate: String?, // Used for TV Shows/Series
-    @SerializedName("media_type") val mediaType: String? // "movie" or "tv"
+    @SerializedName("release_date") val releaseDate: String? = null,
+    @SerializedName("first_air_date") val firstAirDate: String? = null,
+    @SerializedName("media_type") val mediaType: String? = null,
+    @SerializedName("number_of_seasons") val numberOfSeasons: Int? = null,
+    @SerializedName("number_of_episodes") val numberOfEpisodes: Int? = null
 ) {
     // Helper fields to get uniform values
     val displayTitle: String
@@ -66,4 +68,33 @@ data class AuthorDetails(
     @SerializedName("username") val username: String?,
     @SerializedName("avatar_path") val avatarPath: String?,
     @SerializedName("rating") val rating: Double?
+)
+
+// --- VIDEO / TRAILER MODELS ---
+data class VideoResponse(
+    @SerializedName("results") val results: List<Video>
+)
+
+data class Video(
+    @SerializedName("id") val id: String,
+    @SerializedName("key") val key: String,
+    @SerializedName("name") val name: String,
+    @SerializedName("site") val site: String,
+    @SerializedName("type") val type: String
+)
+
+// --- TV SEASONS & EPISODES MODELS ---
+data class TvSeasonDetails(
+    @SerializedName("id") val id: Int,
+    @SerializedName("season_number") val seasonNumber: Int,
+    @SerializedName("episodes") val episodes: List<TvEpisode>
+)
+
+data class TvEpisode(
+    @SerializedName("id") val id: Int,
+    @SerializedName("episode_number") val episodeNumber: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("overview") val overview: String?,
+    @SerializedName("still_path") val stillPath: String?,
+    @SerializedName("vote_average") val voteAverage: Double?
 )

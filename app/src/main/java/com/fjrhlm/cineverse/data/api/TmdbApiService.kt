@@ -127,4 +127,26 @@ interface TmdbApiService {
         @Query("api_key") apiKey: String = API_KEY,
         @Query("language") language: String = "en-US"
     ): Call<GenreResponse>
+
+    // --- VIDEO ENDPOINTS ---
+    @GET("movie/{movie_id}/videos")
+    fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Call<VideoResponse>
+
+    @GET("tv/{tv_id}/videos")
+    fun getTvVideos(
+        @Path("tv_id") tvId: Int,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Call<VideoResponse>
+
+    // --- TV SEASON DETAILS ENDPOINTS ---
+    @GET("tv/{tv_id}/season/{season_number}")
+    fun getTvSeasonDetails(
+        @Path("tv_id") tvId: Int,
+        @Path("season_number") seasonNumber: Int,
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("language") language: String = "en-US"
+    ): Call<TvSeasonDetails>
 }
