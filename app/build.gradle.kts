@@ -59,5 +59,5 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // 4. YouTube Player (Untuk memutar trailer secara in-app)
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 }
